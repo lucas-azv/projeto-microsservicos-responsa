@@ -1,6 +1,6 @@
 package br.edu.iftm.tspi.gerenciamento_arquivos.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +16,14 @@ public class ArquivoDTO {
     private String descricao;
     private String link;
     private String tipo;
-    private LocalDate dataUpload;
+    private LocalDateTime dataUpload;
 
     private CategoriaDTO categoria;
+
+    public CategoriaDTO convert(CategoriaDTO categoriaDTO){
+        return new CategoriaDTO(
+            categoriaDTO.getId(),
+            categoriaDTO.getNome()
+        );
+    }
 }

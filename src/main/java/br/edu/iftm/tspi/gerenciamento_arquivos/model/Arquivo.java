@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import br.edu.iftm.tspi.gerenciamento_arquivos.dto.ArquivoDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -44,4 +45,16 @@ public class Arquivo {
     @JoinColumn(name = "categoria_id", nullable = false)
     @Field("categoria_id")
     private Categoria categoria;
+
+    public static Arquivo convert(ArquivoDTO arquivoDTO){
+        return new Arquivo(
+            arquivoDTO.getId(),
+            arquivoDTO.getNome(),
+            arquivoDTO.getDescricao(),
+            arquivoDTO.getLink(),
+            arquivoDTO.getTipo(),
+            arquivoDTO.getDataUpload(),
+            Categoria.convert(arquivoDTO.getCategoria())
+        );
+    }
 }

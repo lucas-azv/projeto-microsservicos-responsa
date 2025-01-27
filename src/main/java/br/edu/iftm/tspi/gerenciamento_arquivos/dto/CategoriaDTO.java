@@ -12,4 +12,15 @@ import lombok.NoArgsConstructor;
 public class CategoriaDTO {
     private UUID id;
     private String nome;
+
+    public CategoriaDTO convert(CategoriaDTO categoriaDTO){
+        return new CategoriaDTO(
+            categoriaDTO.getId(),
+            categoriaDTO.getNome()
+        );
+    }
+
+    public CategoriaDTO(String nome) {
+        this.nome = nome;
+    }
 }
