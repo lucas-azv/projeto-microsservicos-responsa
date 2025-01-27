@@ -1,7 +1,9 @@
 package br.edu.iftm.tspi.gerenciamento_arquivos.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
+
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,13 +24,24 @@ public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @Field("nome")
     private String nome;
+
+    @Field("descricao")
     private String descricao;
+
+    @Field("link")
     private String link;
+
+    @Field("tipo")
     private String tipo;
-    private LocalDate dataUpload;
+
+    @Field("data_upload")
+    private LocalDateTime dataUpload;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
+    @Field("categoria_id")
     private Categoria categoria;
 }
